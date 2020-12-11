@@ -13,18 +13,18 @@ resource "github_repository" "github-management" {
   topics             = ["config", "terraform"]
 }
 
-# # Set up baseline configs for the repo
-# resource "github_branch_protection" "team_baseline_config" {
-#   repository     = github_repository.github-management.name
-#   branch         = "master"
+# Set up baseline configs for the repo
+resource "github_branch_protection" "team_baseline_config" {
+  repository     = github_repository.github-management.name
+  branch         = "master"
 
-#   required_status_checks {
-#     # require up to date before merging
-#     strict = true
-#     contexts = ["atlas/mononoke/github-management", ]
-#   }
-#   required_pull_request_reviews {
-#     dismiss_stale_reviews      = true
-#     require_code_owner_reviews = false
-#   }
-# }
+  required_status_checks {
+    # require up to date before merging
+    strict = true
+    contexts = ["atlas/mononoke/github-management", ]
+  }
+  required_pull_request_reviews {
+    dismiss_stale_reviews      = true
+    require_code_owner_reviews = false
+  }
+}
